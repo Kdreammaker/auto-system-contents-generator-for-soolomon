@@ -346,6 +346,70 @@ Check out the blog for more details and become a protagonist of the AI era!
         logger.info("Step 5 완료.")
         return translated_results
 
+    async def step6_qc(self, original_content: str, translated_results: dict):
+        """Step 6: 번역 품질 검수 (Mockup)"""
+        logger.info("Step 6: 번역 품질 검수 시작...")
+        prompt_data = self.prompts.get('prompt6-qc', {})
+        
+        qc_results = {}
+
+        # --- Mockup 로직 ---
+        logger.info("실제 Gemini API (번역 품질 검수) 호출은 생략합니다 (Mockup).")
+
+        for lang_code, translations in translated_results.items():
+            # 블로그 콘텐츠 검수
+            translated_blog = translations['blog']
+            
+            # 프롬프트에 원문과 번역문 삽입 (시뮬레이션)
+            full_prompt_blog = prompt_data.get('prompt', '').replace('[언어]', lang_code.upper()).format(
+                original_content=original_content,
+                translated_content=translated_blog
+            )
+
+            qc_feedback_blog = f"""
+# 번역 품질 검수 결과 (Mockup - {lang_code.upper()} 블로그)
+
+---
+{full_prompt_blog}
+---
+
+## 검수 의견
+<!-- 검수 의견: 전반적으로 번역 품질이 우수합니다. 몇몇 어색한 표현을 수정했습니다. -->
+<!-- 검수 의견: 'paradigm'이라는 단어는 '{lang_code.upper()}' 문화권에서 다소 생소할 수 있어, 더 일반적인 표현으로 대체했습니다. -->
+
+## 수정된 번역문 (최종)
+{translated_blog.replace('paradigm', 'fundamental change')}
+(이것은 검수 후 최종 블로그 본문 Mockup입니다.)
+"""
+            self._save_result("step6", f"step3-translated-revised-w.feedback-{lang_code}", qc_feedback_blog)
+            self._save_result("step6", f"step3-translated-revised-final-{lang_code}", qc_feedback_blog.split('## 수정된 번역문 (최종)')[1].strip())
+
+            # SNS 콘텐츠 검수 (간단히 처리)
+            translated_social = translations['social']
+            qc_feedback_social = f"""
+# 번역 품질 검수 결과 (Mockup - {lang_code.upper()} SNS)
+
+## 검수 의견
+<!-- 검수 의견: SNS 콘텐츠는 간결하고 효과적입니다. 해시태그의 현지화 여부를 추가 검토하면 좋습니다. -->
+
+## 수정된 번역문 (최종)
+{translated_social}
+(이것은 검수 후 최종 SNS 본문 Mockup입니다.)
+"""
+            self._save_result("step6", f"step4-translated-revised-w.feedback-{lang_code}", qc_feedback_social)
+            self._save_result("step6", f"step4-translated-revised-final-{lang_code}", qc_feedback_social.split('## 수정된 번역문 (최종)')[1].strip())
+
+            qc_results[lang_code] = {
+                "blog_feedback": qc_feedback_blog,
+                "blog_final": qc_feedback_blog.split('## 수정된 번역문 (최종)')[1].strip(),
+                "social_feedback": qc_feedback_social,
+                "social_final": qc_feedback_social.split('## 수정된 번역문 (최종)')[1].strip()
+            }
+            logger.info(f"Mockup 번역 품질 검수 완료: {lang_code.upper()}")
+        
+        logger.info("Step 6 완료.")
+        return qc_results
+
     async def run_pipeline(self):
         """전체 자동화 파이프라인 실행"""
         logger.info("콘텐츠 자동 생성 파이프라인 시작.")
@@ -361,6 +425,8 @@ Check out the blog for more details and become a protagonist of the AI era!
             social_content_result = await self.step4_social(content_final_result)
             
             translated_results = await self.step5_translation(content_final_result, social_content_result)
+            
+            qc_results = await self.step6_qc(content_final_result, translated_results)
             
             logger.info(f"✓ 파이프라인 성공적으로 완료. 결과물은 '{self.output_dir}' 폴더를 확인하세요.")
             
