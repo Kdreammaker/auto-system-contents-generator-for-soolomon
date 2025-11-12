@@ -267,6 +267,35 @@ AI 기술의 발전은 긍정적인 변화와 함께 윤리적, 사회적 과제
         self._save_result("step3", "step3-final-kr", final_html, extension='html')
         logger.info("HTML 변환 완료 (Mockup).")
 
+    async def step4_social(self, blog_content: str):
+        """Step 4: SNS 콘텐츠 변환 (Mockup)"""
+        logger.info("Step 4: SNS 콘텐츠 변환 시작...")
+        prompt_data = self.prompts.get('prompt4-social', {})
+
+        # --- Mockup 로직 ---
+        logger.info("실제 Gemini API (SNS 콘텐츠 변환) 호출은 생략합니다 (Mockup).")
+
+        full_prompt = prompt_data.get('prompt', '').format(blog_content=blog_content)
+
+        mock_social_content = f"""
+# 인스타그램 포스트 (Mockup)
+
+---
+{full_prompt}
+---
+
+✨ AI 기술의 미래, 생성형 AI가 가져올 놀라운 변화! ✨
+
+최신 AI 트렌드와 함께 우리 삶이 어떻게 혁신될지 궁금하신가요? 🤔
+블로그에서 자세한 내용을 확인하고, AI 시대의 주인공이 되어보세요!
+
+#AI기술 #생성형AI #미래기술 #인공지능 #기술트렌드 #혁신 #AI시대 #블로그포스트
+
+🔗 지금 바로 확인하기: [블로그 링크]
+"""
+        self._save_result("step4", "step4-social-kr", mock_social_content)
+        logger.info("Step 4 완료.")
+        return mock_social_content
 
     async def run_pipeline(self):
         """전체 자동화 파이프라인 실행"""
@@ -279,6 +308,8 @@ AI 기술의 발전은 긍정적인 변화와 함께 윤리적, 사회적 과제
             structure_result = await self.step2_structure(research_result)
             
             content_final_result = await self.step3_content(research_result, structure_result)
+            
+            social_content_result = await self.step4_social(content_final_result)
             
             logger.info(f"✓ 파이프라인 성공적으로 완료. 결과물은 '{self.output_dir}' 폴더를 확인하세요.")
             
