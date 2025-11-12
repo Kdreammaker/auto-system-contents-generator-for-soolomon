@@ -297,6 +297,55 @@ AI 기술의 발전은 긍정적인 변화와 함께 윤리적, 사회적 과제
         logger.info("Step 4 완료.")
         return mock_social_content
 
+    async def step5_translation(self, original_blog_content: str, original_social_content: str):
+        """Step 5: 다국어 번역 (Mockup)"""
+        logger.info("Step 5: 다국어 번역 시작...")
+        
+        target_languages = ['en', 'ja', 'zh', 'es'] # 영어, 일본어, 중국어, 스페인어
+        
+        translated_results = {}
+
+        # --- Mockup 로직 ---
+        logger.info("실제 DeepL API 호출은 생략합니다 (Mockup).")
+
+        for lang_code in target_languages:
+            # 블로그 콘텐츠 번역 Mockup
+            translated_blog = f"""
+# AI Technology Future: Changes Brought by Generative AI (Mockup - {lang_code.upper()})
+
+## Introduction
+AI technology is rapidly evolving and profoundly impacting all areas of our lives. The emergence of generative AI in recent years, in particular, is fundamentally changing the technology paradigm. This article delves into the latest AI technology trends, the impact of generative AI on the market, and future prospects.
+
+(This is a mockup translation of the blog content into {lang_code.upper()})
+"""
+            self._save_result("step5", f"step3-revised-final-{lang_code}", translated_blog)
+            
+            # SNS 콘텐츠 번역 Mockup
+            translated_social = f"""
+# Instagram Post (Mockup - {lang_code.upper()})
+
+✨ The future of AI technology, the amazing changes brought by generative AI! ✨
+
+Curious how our lives will be revolutionized with the latest AI trends? 🤔
+Check out the blog for more details and become a protagonist of the AI era!
+
+#AItech #GenerativeAI #FutureTech #ArtificialIntelligence #TechTrends #Innovation #AIera #BlogPost
+
+🔗 Check it out now: [Blog Link]
+
+(This is a mockup translation of the social content into {lang_code.upper()})
+"""
+            self._save_result("step5", f"step4-social-{lang_code}", translated_social)
+            
+            translated_results[lang_code] = {
+                "blog": translated_blog,
+                "social": translated_social
+            }
+            logger.info(f"Mockup 번역 완료: {lang_code.upper()}")
+        
+        logger.info("Step 5 완료.")
+        return translated_results
+
     async def run_pipeline(self):
         """전체 자동화 파이프라인 실행"""
         logger.info("콘텐츠 자동 생성 파이프라인 시작.")
@@ -310,6 +359,8 @@ AI 기술의 발전은 긍정적인 변화와 함께 윤리적, 사회적 과제
             content_final_result = await self.step3_content(research_result, structure_result)
             
             social_content_result = await self.step4_social(content_final_result)
+            
+            translated_results = await self.step5_translation(content_final_result, social_content_result)
             
             logger.info(f"✓ 파이프라인 성공적으로 완료. 결과물은 '{self.output_dir}' 폴더를 확인하세요.")
             
