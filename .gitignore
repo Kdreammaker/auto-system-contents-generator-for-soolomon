@@ -1,4 +1,5 @@
-.venv/
-__pycache__/
 .env
 content-output/
+__pycache__/
+*.pyc
+.venv/
