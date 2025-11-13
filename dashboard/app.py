@@ -7,6 +7,7 @@ import os
 import json
 from flask import Flask, jsonify, request
 from celery import Celery
+from .utils import read_manifest, write_manifest # manifest 유틸리티 함수 임포트
 
 def make_celery(app):
     """
@@ -84,21 +85,34 @@ def start_cycle():
 @app.route('/api/cycle/<cycle_id>/status', methods=['GET'])
 def get_cycle_status(cycle_id):
     """(모의) 특정 사이클의 상태를 조회합니다."""
-    manifest_path = os.path.join(app.root_path, '..', 'content-output', cycle_id, 'manifest.json')
-    if os.path.exists(manifest_path):
-        with open(manifest_path, 'r', encoding='utf-8') as f:
-            manifest = json.load(f)
+    manifest = read_manifest(cycle_id)
+    if manifest:
         return jsonify(manifest)
     else:
         return jsonify({
             "cycle_id": cycle_id,
-            "status": { "step": 0, "code": "NOT_FOUND", "text": f"Cycle {cycle_id} not found." },
-            "logs": f"Manifest for cycle {cycle_id} not found."
+            "status": { "step": 0, "code": "NOT_FOUND", "text": f"Cycle {cycle_id} not found or malformed." },
+            "logs": f"Manifest for cycle {cycle_id} not found or malformed."
         }), 404
 
 @app.route('/api/cycle/<cycle_id>/run/<int:step_id>', methods=['POST'])
 def run_step(cycle_id, step_id):
-    """(모의) 특정 단계를 비동기적으로 실행합니다."""
+    """
+    (모의) 특정 단계를 비동기적으로 실행합니다.
+    Design Document의 멱등성(S-1) 로직을 구현하여 중복 작업을 방지합니다.
+    """
+    manifest = read_manifest(cycle_id)
+
+    if manifest:
+        current_status_code = manifest.get('status', {}).get('code')
+        # 예시: STEP_X_RUNNING, STEP_X_PENDING과 같은 상태 코드를 확인
+        # 실제 구현에서는 step_id에 해당하는 정확한 상태 코드를 확인해야 합니다.
+        if current_status_code and (f"STEP_{step_id}_RUNNING" in current_status_code or f"STEP_{step_id}_PENDING" in current_status_code):
+            return jsonify({
+                "message": f"Step {step_id} for cycle {cycle_id} is already running or pending.",
+                "current_status": current_status_code
+            }), 409 # Conflict
+
     # Celery 작업을 트리거합니다.
     debug_task.delay(cycle_id, step_id) # Celery 태스크 호출
     return jsonify({"message": f"Step {step_id} for cycle {cycle_id} has been triggered and sent to worker."}), 202

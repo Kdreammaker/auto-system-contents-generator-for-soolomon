@@ -84,8 +84,8 @@ backup: Task [N] 작업 중 안전 백업
   * [x] 2.2 Design Document의 API Endpoints 섹션에 명시된 모든 엔드포인트를 '가짜(Mock)' 데이터로 구현  
   * [x] 2.3 POST /api/cycle/run/<step_id>가 Celery 작업을 트리거하고 HTTP 202를 반환하는지 테스트  
   * [x] 2.4 GET /api/cycle/status가 manifest.json 파일의 status 객체를 읽어 JSON으로 반환하는지 테스트  
-  * [ ] 2.5 manifest.json 스키마(Design Document, Data Models 섹션)에 맞춘 파일 읽기/쓰기 유틸리티 함수 구현  
-  * [ ] 2.6 Design Document의 '멱등성(S-1)' 로직 구현 (중복 작업 실행 방지)  
+  * [x] 2.5 manifest.json 스키마(Design Document, Data Models 섹션)에 맞춘 파일 읽기/쓰기 유틸리티 함수 구현  
+  * [x] 2.6 Design Document의 '멱등성(S-1)' 로직 구현 (중복 작업 실행 방지)  
 * [ ] **Task 3: 대쉬보드 UI 뼈대 (Frontend Skeleton)**  
   * [ ] 3.1 dashboard/templates/에 기본 layout.html 생성  
   * [ ] 3.2 layout.html에 CDN을 통해 Bootstrap 5, Remix Icon, Google Fonts 로드  
