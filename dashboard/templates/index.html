@@ -31,16 +31,35 @@
         <!-- Main Content -->
         <main class="flex-grow grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
             <!-- Left Panel: Control -->
-            <div class="bg-white rounded-lg shadow-lg flex flex-col">
-                <div class="p-4 border-b flex items-center justify-between">
-                    <h2 class="text-lg font-semibold">HTML Input</h2>
-                    <button id="preview-button" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center">
-                        <i class="ri-refresh-line mr-2"></i>
-                        Update Preview
-                    </button>
+            <div class="flex flex-col space-y-4">
+                <!-- Pipeline Control Section -->
+                <div class="bg-white rounded-lg shadow-lg">
+                    <div class="p-4 border-b">
+                        <h2 class="text-lg font-semibold">Pipeline Control</h2>
+                    </div>
+                    <div class="p-4">
+                        <button id="start-cycle-button" class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center">
+                            <i class="ri-play-circle-line mr-2"></i>
+                            Start New Cycle
+                        </button>
+                        <div id="cycle-status" class="mt-4 text-sm text-gray-600">
+                            <!-- Cycle status will be displayed here -->
+                        </div>
+                    </div>
                 </div>
-                <div class="flex-grow p-4">
-                    <textarea id="html-input" class="w-full h-full p-3 border border-gray-300 rounded-md resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" placeholder="Paste AI-generated HTML here..."></textarea>
+
+                <!-- HTML Input Panel -->
+                <div class="bg-white rounded-lg shadow-lg flex flex-col flex-grow">
+                    <div class="p-4 border-b flex items-center justify-between">
+                        <h2 class="text-lg font-semibold">HTML Input</h2>
+                        <button id="preview-button" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center">
+                            <i class="ri-refresh-line mr-2"></i>
+                            Update Preview
+                        </button>
+                    </div>
+                    <div class="flex-grow p-4">
+                        <textarea id="html-input" class="w-full h-full p-3 border border-gray-300 rounded-md resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" placeholder="Paste AI-generated HTML here..."></textarea>
+                    </div>
                 </div>
             </div>
 
