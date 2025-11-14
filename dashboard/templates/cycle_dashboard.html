@@ -1,0 +1,139 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3><a href="/" class="text-decoration-none text-dark">🏠</a> 사이클: 251112</h3>
+    <span class="badge bg-warning text-dark fs-6">Step 4: PM 구조 컨펌 대기중</span>
+</div>
+
+<div class="row">
+    <!-- 14-Step Workflow -->
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header">
+                14-Step Workflow
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center"><span><i class="ri-check-line text-success"></i> 1. 자료 조사 (AI)</span> <span class="badge bg-success">완료</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center"><span><i class="ri-check-line text-success"></i> 2. 주제/포맷 선택 (PM)</span> <span class="badge bg-success">완료</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center"><span><i class="ri-check-line text-success"></i> 3. 구조 설계 (AI)</span> <span class="badge bg-success">완료</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><i class="ri-user-search-line text-warning"></i> 4. 구조 컨펌 (PM)</span>
+                    <div>
+                        <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modal-reviewer">검토하기</button>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 5. 풀 콘텐츠 작성 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 6. 기초 검수 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 7. 리치 콘텐츠 렌더링</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-user-search-line"></i> 8. 원본 최종 검수 (PM)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 9. SNS 변형 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li class="list-group-item d-flex justify-content_between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 10. SNS 기초 검수 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-user-search-line"></i> 11. SNS 최종 검수 (PM)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 12. 전체 번역 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 13. 번역 검수/교정 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-send-plane-line"></i> 14. 최종 배포 (PM)</span> <span class="badge bg-light text-dark">대기</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Log Viewer -->
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header">
+                로그 뷰어
+            </div>
+            <div class="card-body bg-dark text-light font-monospace" style="height: 600px; overflow-y: scroll;">
+                <pre>[INFO] Cycle 251112-Step3-Outline started.
+[INFO] Calling Claude API for outline generation.
+[SUCCESS] Outline generated successfully.
+[INFO] Saved outline to content-output/251112/step2-outline/step2-outline.md
+[INFO] Updating manifest.json status to STEP_4_PENDING_APPROVAL.
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal 2: 산출물 뷰어 & 검수 -->
+<div class="modal modal-xl fade" id="modal-reviewer" tabindex="-1" aria-labelledby="reviewerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewerModalLabel">산출물 검수 (Step 4: 구조 컨펌)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" id="reviewerTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="markdown-tab" data-bs-toggle="tab" data-bs-target="#markdown-pane" type="button" role="tab">Markdown (수정)</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="preview-tab" data-bs-toggle="tab" data-bs-target="#preview-pane" type="button" role="tab">HTML 프리뷰</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="reviewerTabContent">
+                    <div class="tab-pane fade show active" id="markdown-pane" role="tabpanel">
+                        <!-- EasyMDE 에디터가 여기에 로드될 것입니다. -->
+                        <textarea id="easymde-editor"></textarea>
+                    </div>
+                    <div class="tab-pane fade" id="preview-pane" role="tabpanel">
+                        <iframe srcdoc="<p>HTML 프리뷰가 여기에 표시됩니다.</p>" style="width: 100%; height: 500px; border: 1px solid #ccc;"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal-assets"><i class="ri-image-add-line"></i> 에셋 삽입</button>
+                <button type="button" class="btn btn-light"><i class="ri-code-box-line"></i> 컴포넌트 삽입</button>
+                <div class="ms-auto">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary">저장</button>
+                    <button type="button" class="btn btn-success">승인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 4: 에셋 삽입 -->
+<div class="modal fade" id="modal-assets" tabindex="-1" aria-labelledby="assetsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="assetsModalLabel">에셋 삽입</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>assets/emoji/ 폴더의 이미지 목록이 여기에 표시됩니다.</p>
+                <!-- 이미지 목록 -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-target="#modal-reviewer" data-bs-toggle="modal">돌아가기</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/easymde.min.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize EasyMDE when the modal is shown
+        const reviewerModal = document.getElementById('modal-reviewer');
+        let easyMDE;
+
+        reviewerModal.addEventListener('shown.bs.modal', function () {
+            if (!easyMDE) {
+                easyMDE = new EasyMDE({
+                    element: document.getElementById('easymde-editor'),
+                    spellChecker: false,
+                    placeholder: "콘텐츠를 여기에 입력하세요...",
+                    initialValue: "### Step 4: 구조 컨펌\n\n- 항목 1\n- 항목 2\n- 항목 3"
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -86,13 +86,13 @@ backup: Task [N] 작업 중 안전 백업
   * [x] 2.4 GET /api/cycle/status가 manifest.json 파일의 status 객체를 읽어 JSON으로 반환하는지 테스트  
   * [x] 2.5 manifest.json 스키마(Design Document, Data Models 섹션)에 맞춘 파일 읽기/쓰기 유틸리티 함수 구현  
   * [x] 2.6 Design Document의 '멱등성(S-1)' 로직 구현 (중복 작업 실행 방지)  
-* [ ] **Task 3: 대쉬보드 UI 뼈대 (Frontend Skeleton)**  
-  * [ ] 3.1 dashboard/templates/에 기본 layout.html 생성  
-  * [ ] 3.2 layout.html에 CDN을 통해 Bootstrap 5, Remix Icon, Google Fonts 로드  
-  * [ ] 3.3 View 1: 메인 페이지 (/) UI 뼈대 구현 (버튼, 목록)  
-  * [ ] 3.4 View 2: 사이클 대쉬보드 (/cycle/<YYMMDD>) UI 뼈대 구현 (14단계 리스트, 로그 뷰어)  
-  * [ ] 3.5 Modal 1, 2, 3, 4의 기본 HTML/CSS 뼈대 구현 (Bootstrap Modals)  
-  * [ ] 3.6 dashboard/static/에 EasyMDE 라이브러리 파일(.js, .css) 추가  
+* [x] **Task 3: 대쉬보드 UI 뼈대 (Frontend Skeleton)**  
+  * [x] 3.1 dashboard/templates/에 기본 layout.html 생성  
+  * [x] 3.2 layout.html에 CDN을 통해 Bootstrap 5, Remix Icon, Google Fonts 로드  
+  * [x] 3.3 View 1: 메인 페이지 (/) UI 뼈대 구현 (버튼, 목록)  
+  * [x] 3.4 View 2: 사이클 대쉬보드 (/cycle/<YYMMDD>) UI 뼈대 구현 (14단계 리스트, 로그 뷰어)  
+  * [x] 3.5 Modal 1, 2, 3, 4의 기본 HTML/CSS 뼈대 구현 (Bootstrap Modals)  
+  * [x] 3.6 dashboard/static/에 EasyMDE 라이브러리 파일(.js, .css) 추가  
 * [ ] **Task 4: 프론트-백엔드 연동 (UI Wiring)**  
   * [ ] 4.1 View 1의 [새 사이클 시작] 버튼(Modal 1)이 POST /api/cycle/start를 호출하고, manifest.json 생성 후 View 2로 리디렉션되는 흐름 완성  
   * [ ] 4.2 View 2가 5초마다 GET /api/cycle/status를 폴링(polling)하여 14단계의 status.text를 UI에 업데이트하는 로직 구현 (Vanilla JS)  
