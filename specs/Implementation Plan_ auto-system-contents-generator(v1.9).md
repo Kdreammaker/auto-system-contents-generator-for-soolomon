@@ -93,10 +93,10 @@ backup: Task [N] 작업 중 안전 백업
   * [x] 3.4 View 2: 사이클 대쉬보드 (/cycle/<YYMMDD>) UI 뼈대 구현 (14단계 리스트, 로그 뷰어)  
   * [x] 3.5 Modal 1, 2, 3, 4의 기본 HTML/CSS 뼈대 구현 (Bootstrap Modals)  
   * [x] 3.6 dashboard/static/에 EasyMDE 라이브러리 파일(.js, .css) 추가  
-* [ ] **Task 4: 프론트-백엔드 연동 (UI Wiring)**  
-  * [ ] 4.1 View 1의 [새 사이클 시작] 버튼(Modal 1)이 POST /api/cycle/start를 호출하고, manifest.json 생성 후 View 2로 리디렉션되는 흐름 완성  
-  * [ ] 4.2 View 2가 5초마다 GET /api/cycle/status를 폴링(polling)하여 14단계의 status.text를 UI에 업데이트하는 로직 구현 (Vanilla JS)  
-  * [ ] 4.3 View 2의 [Step N 실행] 버튼이 POST /api/cycle/run/<step_id>를 호출하고 UI를 '진행중' 상태로 즉시 변경하는 로직 구현 (버튼 disabled 처리 포함)  
+* [x] **Task 4: 프론트-백엔드 연동 (UI Wiring)**  
+  * [x] 4.1 View 1의 [새 사이클 시작] 버튼(Modal 1)이 POST /api/cycle/start를 호출하고, manifest.json 생성 후 View 2로 리디렉션되는 흐름 완성  
+  * [x] 4.2 View 2가 5초마다 GET /api/cycle/status를 폴링(polling)하여 14단계의 status.text를 UI에 업데이트하는 로직 구현 (Vanilla JS)  
+  * [x] 4.3 View 2의 [Step N 실행] 버튼이 POST /api/cycle/run/<step_id>를 호출하고 UI를 '진행중' 상태로 즉시 변경하는 로직 구현 (버튼 disabled 처리 포함)  
 * [ ] **Task 5: Step 1~2 (기획) 파이프라인 연동**  
   * [ ] 5.1 run_pipeline.py에 Step 1 (자료 조사) 로직 구현 (Perplexity API 호출, step1-research.md 저장)  
   * [ ] 5.2 Step 1 완료 시 manifest.json의 status를 STEP_2_PENDING_APPROVAL로 업데이트하는 로직 구현  

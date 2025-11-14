@@ -5,7 +5,8 @@
 """
 import os
 import json
-from flask import Flask, jsonify, request
+import datetime
+from flask import Flask, jsonify, request, render_template, redirect, url_for
 from celery import Celery
 from .utils import read_manifest, write_manifest # manifest 유틸리티 함수 임포트
 
@@ -35,7 +36,8 @@ def make_celery(app):
     return celery
 
 # 1. Flask 앱 초기화
-app = Flask(__name__)
+# template_folder를 dashboard/templates로 명시적으로 설정합니다.
+app = Flask(__name__, template_folder='templates')
 
 # 2. 환경 변수(.env)로부터 Celery 설정 로드
 app.config.update(
@@ -44,7 +46,6 @@ app.config.update(
 )
 
 # 3. Celery 인스턴스 생성
-# 이 'celery' 변수가 docker-compose.yml의 'celery -A dashboard.app.celery' 명령어에서 찾던 대상입니다.
 celery = make_celery(app)
 
 # --- Celery Tasks ---
@@ -59,14 +60,21 @@ def debug_task(cycle_id, step_id):
     # 예: subprocess.run(["python", "run_pipeline.py", cycle_id, step_id])
     return {"status": "completed", "cycle_id": cycle_id, "step_id": step_id}
 
-# --- Mock API Endpoints ---
-
+# --- Frontend Routes ---
 @app.route('/')
 def index():
-    """
-    앱이 실행 중인지 확인하기 위한 간단한 테스트 라우트입니다.
-    """
-    return "Flask server is running with mock API endpoints!"
+    """메인 페이지 (View 1)를 렌더링합니다."""
+    return render_template('index.html')
+
+@app.route('/cycle/<cycle_id>')
+def cycle_dashboard(cycle_id):
+    """특정 사이클의 대쉬보드 (View 2)를 렌더링합니다."""
+    # manifest = read_manifest(cycle_id)
+    # return render_template('cycle_dashboard.html', cycle_id=cycle_id, manifest=manifest)
+    return render_template('cycle_dashboard.html', cycle_id=cycle_id)
+
+
+# --- API Endpoints ---
 
 @app.route('/api/cycles', methods=['GET'])
 def get_cycles():
@@ -79,8 +87,50 @@ def get_cycles():
 
 @app.route('/api/cycle/start', methods=['POST'])
 def start_cycle():
-    """(모의) 새 사이클을 시작합니다."""
-    return jsonify({"message": "New cycle started successfully", "cycle_id": "251113"}), 202 # 비동기 처리를 암시하는 202 응답
+    """
+    새 사이클을 시작합니다.
+    - cycle_id 생성
+    - content-output/{cycle_id} 폴더 생성
+    - manifest.json 파일 초기화
+    - 성공 시 새 사이클 대쉬보드 URL 반환
+    """
+    try:
+        data = request.get_json()
+        mode = data.get('mode', 'standard')
+        template = data.get('template', 'blog-post-default.html')
+
+        # cycle_id를 현재 시간 기반으로 생성 (e.g., 251114105501)
+        cycle_id = datetime.datetime.now().strftime('%y%m%d%H%M%S')
+        
+        # manifest.json 초기 구조 (PRD 참조)
+        manifest = {
+            "cycle_id": cycle_id,
+            "createdAt": datetime.datetime.now().isoformat(),
+            "status": {
+                "step": 1,
+                "code": "STEP_1_PENDING",
+                "text": "Step 1: 자료 조사 대기중"
+            },
+            "config": {
+                "mode": mode,
+                "template": template
+            },
+            "selection": {},
+            "files": {},
+            "logs": f"content-output/{cycle_id}/pipeline.log"
+        }
+        
+        # manifest.json 파일 쓰기 (utils.py 함수 사용)
+        write_manifest(cycle_id, manifest)
+
+        # TODO: Step 1 (자료 조사) Celery 작업 즉시 트리거
+        # run_step.delay(cycle_id, 1) 
+
+        return jsonify({"redirect_url": url_for('cycle_dashboard', cycle_id=cycle_id)})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 @app.route('/api/cycle/<cycle_id>/status', methods=['GET'])
 def get_cycle_status(cycle_id):

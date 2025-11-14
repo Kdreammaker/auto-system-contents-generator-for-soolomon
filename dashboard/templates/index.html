@@ -75,3 +75,48 @@
     </div>
 </div>
 {% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const startCycleBtn = document.querySelector('#modal-new-cycle .btn-primary');
+
+    startCycleBtn.addEventListener('click', function () {
+        const strategyMode = document.getElementById('strategy-mode').value;
+        const htmlTemplate = document.getElementById('html-template').value;
+
+        // Disable button to prevent multiple clicks
+        startCycleBtn.disabled = true;
+        startCycleBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> 생성중...';
+
+        fetch('/api/cycle/start', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                mode: strategyMode,
+                template: htmlTemplate,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.redirect_url) {
+                window.location.href = data.redirect_url;
+            } else if (data.error) {
+                alert('오류 발생: ' + data.error);
+                // Re-enable button
+                startCycleBtn.disabled = false;
+                startCycleBtn.textContent = '실행';
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('사이클 시작 중 오류가 발생했습니다.');
+            startCycleBtn.disabled = false;
+            startCycleBtn.textContent = '실행';
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -2,8 +2,8 @@
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h3><a href="/" class="text-decoration-none text-dark">🏠</a> 사이클: 251112</h3>
-    <span class="badge bg-warning text-dark fs-6">Step 4: PM 구조 컨펌 대기중</span>
+    <h3 id="cycle-id-title"><a href="/" class="text-decoration-none text-dark">🏠</a> 사이클: {{ cycle_id }}</h3>
+    <span id="main-status-badge" class="badge bg-secondary text-dark fs-6">로딩중...</span>
 </div>
 
 <div class="row">
@@ -13,26 +13,21 @@
             <div class="card-header">
                 14-Step Workflow
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center"><span><i class="ri-check-line text-success"></i> 1. 자료 조사 (AI)</span> <span class="badge bg-success">완료</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center"><span><i class="ri-check-line text-success"></i> 2. 주제/포맷 선택 (PM)</span> <span class="badge bg-success">완료</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center"><span><i class="ri-check-line text-success"></i> 3. 구조 설계 (AI)</span> <span class="badge bg-success">완료</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span><i class="ri-user-search-line text-warning"></i> 4. 구조 컨펌 (PM)</span>
-                    <div>
-                        <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modal-reviewer">검토하기</button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 5. 풀 콘텐츠 작성 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 6. 기초 검수 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 7. 리치 콘텐츠 렌더링</span> <span class="badge bg-light text-dark">대기</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-user-search-line"></i> 8. 원본 최종 검수 (PM)</span> <span class="badge bg-light text-dark">대기</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 9. SNS 변형 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
-                <li class="list-group-item d-flex justify-content_between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 10. SNS 기초 검수 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-user-search-line"></i> 11. SNS 최종 검수 (PM)</span> <span class="badge bg-light text-dark">대기</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 12. 전체 번역 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 13. 번역 검수/교정 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-send-plane-line"></i> 14. 최종 배포 (PM)</span> <span class="badge bg-light text-dark">대기</span></li>
+            <ul class="list-group list-group-flush" id="workflow-steps">
+                <li id="step-1" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 1. 자료 조사 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-2" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-user-search-line"></i> 2. 주제/포맷 선택 (PM)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-3" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 3. 구조 설계 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-4" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-user-search-line"></i> 4. 구조 컨펌 (PM)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-5" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 5. 풀 콘텐츠 작성 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-6" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 6. 기초 검수 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-7" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 7. 리치 콘텐츠 렌더링</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-8" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-user-search-line"></i> 8. 원본 최종 검수 (PM)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-9" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 9. SNS 변형 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-10" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 10. SNS 기초 검수 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-11" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-user-search-line"></i> 11. SNS 최종 검수 (PM)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-12" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 12. 전체 번역 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-13" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-loader-4-line"></i> 13. 번역 검수/교정 (AI)</span> <span class="badge bg-light text-dark">대기</span></li>
+                <li id="step-14" class="list-group-item d-flex justify-content-between align-items-center text-muted"><span><i class="ri-send-plane-line"></i> 14. 최종 배포 (PM)</span> <span class="badge bg-light text-dark">대기</span></li>
             </ul>
         </div>
     </div>
@@ -43,13 +38,8 @@
             <div class="card-header">
                 로그 뷰어
             </div>
-            <div class="card-body bg-dark text-light font-monospace" style="height: 600px; overflow-y: scroll;">
-                <pre>[INFO] Cycle 251112-Step3-Outline started.
-[INFO] Calling Claude API for outline generation.
-[SUCCESS] Outline generated successfully.
-[INFO] Saved outline to content-output/251112/step2-outline/step2-outline.md
-[INFO] Updating manifest.json status to STEP_4_PENDING_APPROVAL.
-                </pre>
+            <div id="log-viewer" class="card-body bg-dark text-light font-monospace" style="height: 600px; overflow-y: scroll;">
+                <pre>상태를 불러오는 중...</pre>
             </div>
         </div>
     </div>
@@ -61,7 +51,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="reviewerModalLabel">산출물 검수 (Step 4: 구조 컨펌)</h5>
+                <h5 class="modal-title" id="reviewerModalLabel">산출물 검수</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -119,21 +109,166 @@
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/easymde.min.js') }}"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize EasyMDE when the modal is shown
-        const reviewerModal = document.getElementById('modal-reviewer');
-        let easyMDE;
+document.addEventListener('DOMContentLoaded', function() {
+    const cycleId = '{{ cycle_id }}';
+    const mainStatusBadge = document.getElementById('main-status-badge');
+    const logViewer = document.getElementById('log-viewer');
+    const workflowSteps = document.getElementById('workflow-steps');
 
-        reviewerModal.addEventListener('shown.bs.modal', function () {
-            if (!easyMDE) {
-                easyMDE = new EasyMDE({
-                    element: document.getElementById('easymde-editor'),
-                    spellChecker: false,
-                    placeholder: "콘텐츠를 여기에 입력하세요...",
-                    initialValue: "### Step 4: 구조 컨펌\n\n- 항목 1\n- 항목 2\n- 항목 3"
-                });
-            }
-        });
+    // EasyMDE 초기화 로직
+    const reviewerModal = document.getElementById('modal-reviewer');
+    let easyMDE;
+    reviewerModal.addEventListener('shown.bs.modal', function () {
+        if (!easyMDE) {
+            easyMDE = new EasyMDE({
+                element: document.getElementById('easymde-editor'),
+                spellChecker: false,
+                placeholder: "콘텐츠를 여기에 입력하세요...",
+                initialValue: "### Step 4: 구조 컨펌\n\n- 항목 1\n- 항목 2\n- 항목 3"
+            });
+        }
     });
+
+    // UI 업데이트 함수
+    function updateStatusUI(manifest) {
+        const status = manifest.status;
+        const currentStep = status.step;
+
+        // 메인 상태 업데이트
+        mainStatusBadge.textContent = status.text;
+        const statusClass = getStatusClass(status.code);
+        mainStatusBadge.className = `badge ${statusClass} fs-6`;
+
+        // 로그 뷰어 업데이트 (간단한 예시)
+        if (manifest.logs) {
+            // logViewer.querySelector('pre').textContent = manifest.logs;
+        }
+
+        // 14단계 워크플로우 UI 업데이트
+        for (let i = 1; i <= 14; i++) {
+            const stepElement = document.getElementById(`step-${i}`);
+            if (!stepElement) continue;
+
+            const icon = stepElement.querySelector('i');
+            const textSpan = stepElement.querySelector('span:first-child');
+            const badge = stepElement.querySelector('.badge');
+            
+            // 기존 액션 버튼 제거
+            const existingActions = stepElement.querySelector('.step-actions');
+            if (existingActions) {
+                existingActions.remove();
+            }
+
+            let actionsDiv = document.createElement('div');
+            actionsDiv.className = 'step-actions';
+
+            let stepStatus = "FUTURE"; // 기본 상태
+
+            if (i < currentStep) {
+                stepStatus = "COMPLETED";
+            } else if (i === currentStep) {
+                stepStatus = status.code;
+            }
+
+            // 상태에 따라 UI 업데이트
+            if (stepStatus === "COMPLETED") {
+                stepElement.className = 'list-group-item d-flex justify-content-between align-items-center';
+                icon.className = 'ri-check-line text-success';
+                badge.className = 'badge bg-success';
+                badge.textContent = '완료';
+            } else if (stepStatus.includes('PENDING_APPROVAL')) {
+                stepElement.className = 'list-group-item d-flex justify-content-between align-items-center';
+                icon.className = 'ri-user-search-line text-warning';
+                badge.className = `badge ${getStatusClass(stepStatus)}`;
+                badge.textContent = '승인 대기';
+                actionsDiv.innerHTML = `<button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modal-reviewer" data-step-id="${i}">검토하기</button>`;
+            } else if (stepStatus.includes('RUNNING')) {
+                stepElement.className = 'list-group-item d-flex justify-content-between align-items-center';
+                icon.className = 'ri-loader-4-line text-primary animation-spin';
+                badge.className = `badge ${getStatusClass(stepStatus)}`;
+                badge.textContent = '진행중';
+                actionsDiv.innerHTML = `<button class="btn btn-primary btn-sm" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></button>`;
+            } else if (stepStatus.includes('PENDING')) {
+                 stepElement.className = 'list-group-item d-flex justify-content-between align-items-center';
+                icon.className = 'ri-play-circle-line text-primary';
+                badge.className = `badge ${getStatusClass(stepStatus)}`;
+                badge.textContent = '실행 대기';
+                actionsDiv.innerHTML = `<button class="btn btn-primary btn-sm run-step" data-step-id="${i}">실행</button>`;
+            } else { // FUTURE or ERROR
+                const isError = stepStatus.includes('ERROR') || stepStatus.includes('FAIL');
+                stepElement.className = isError ? 'list-group-item d-flex justify-content-between align-items-center' : 'list-group-item d-flex justify-content-between align-items-center text-muted';
+                icon.className = isError ? 'ri-error-warning-line text-danger' : (stepElement.querySelector('i').className); // 기본 아이콘 유지
+                badge.className = `badge ${getStatusClass(stepStatus)}`;
+                badge.textContent = isError ? '오류' : '대기';
+                 if (isError) {
+                    actionsDiv.innerHTML = `<button class="btn btn-danger btn-sm run-step" data-step-id="${i}">재시도</button>`;
+                }
+            }
+            stepElement.appendChild(actionsDiv);
+        }
+    }
+
+    function getStatusClass(code) {
+        if (code.includes('ERROR') || code.includes('FAIL')) return 'bg-danger';
+        if (code.includes('PENDING_APPROVAL')) return 'bg-warning text-dark';
+        if (code.includes('RUNNING')) return 'bg-info text-dark';
+        if (code.includes('COMPLETE') || stepStatus === "COMPLETED") return 'bg-success';
+        if (code.includes('PENDING')) return 'bg-primary';
+        return 'bg-light text-dark';
+    }
+
+    // 이벤트 위임을 사용한 클릭 핸들러
+    workflowSteps.addEventListener('click', function(e) {
+        if (e.target && e.target.classList.contains('run-step')) {
+            const button = e.target;
+            const stepId = button.dataset.stepId;
+
+            button.disabled = true;
+            button.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`;
+
+            fetch(`/api/cycle/${cycleId}/run/${stepId}`, {
+                method: 'POST',
+            })
+            .then(response => {
+                if (response.status === 409) { // Conflict
+                     alert('이미 실행중이거나 대기중인 작업입니다.');
+                }
+                // 즉시 상태를 다시 폴링하여 UI 업데이트
+                pollStatus();
+            })
+            .catch(error => {
+                console.error('Error running step:', error);
+                alert(`Step ${stepId} 실행 중 오류 발생`);
+                button.disabled = false;
+                button.textContent = '재시도';
+            });
+        }
+    });
+
+    // 상태 폴링 함수
+    function pollStatus() {
+        fetch(`/api/cycle/${cycleId}/status`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data) {
+                    updateStatusUI(data);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching status:', error);
+                mainStatusBadge.textContent = '상태 로드 실패';
+                mainStatusBadge.className = 'badge bg-danger fs-6';
+            });
+    }
+
+    // 5초마다 폴링 시작 및 즉시 1회 실행
+    setInterval(pollStatus, 5000);
+    pollStatus();
+});
 </script>
 {% endblock %}
