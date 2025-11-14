@@ -1,0 +1,61 @@
+<!--
+  Component: Timeline (개정판 Blueprint)
+  Description: 시간 순서에 따른 이벤트(역사, 단계 등)를 표시합니다.
+  AI는 'events' 배열을 기반으로 아래와 같은 순수 HTML을 생성해야 합니다.
+  (AI must generate this HTML structure based on the 'events' array)
+-->
+
+<!-- 
+  [AI 생성 예시]
+  (Jinja2: {% raw %}{% set events = [...] %}{% endraw %})
+-->
+<div 
+  class="soolomon-component my-8 max-w-2xl mx-auto" 
+  data-component="Timeline"
+>
+  <div class="relative">
+    <!-- 타임라인 중앙선 -->
+    <div 
+      class="absolute left-3.5 top-0 h-full w-0.5"
+      style="background-image: linear-gradient(to bottom, var(--primary) 30%, transparent 100%);"
+    ></div>
+    
+    <ul class="space-y-8">
+      <!-- 
+        [AI 생성 예시 1: Event]
+        (Jinja2: {% raw %}{% for event in events %}{% endraw %}) 
+      -->
+      <li class="flex items-start animate-slideUp" style="animation-delay: 0.1s;">
+        <!-- 아이콘 -->
+        <div class="flex-shrink-0 w-7 h-7 flex items-center justify-center bg-primary text-primary-foreground rounded-full z-10 mr-4 ring-4 ring-background">
+          <i class="ri-calendar-event-line h-4 w-4"></i>
+        </div>
+        <!-- 내용 -->
+        <div class="flex-1">
+          <h5 class="text-primary font-bold text-lg">1990년</h5>
+          <div class="p-4 bg-muted rounded-lg mt-1">
+            <h6 class="font-semibold text-foreground">브랜드 탄생</h6>
+            <p class="text-sm text-muted-foreground">Soolomon이 처음으로 맥주 페어링 서비스를 시작했습니다.</p>
+          </div>
+        </div>
+      </li>
+      
+      <!-- [AI 생성 예시 2: Event] -->
+      <li class="flex items-start animate-slideUp" style="animation-delay: 0.2s;">
+        <!-- 아이콘 -->
+        <div class="flex-shrink-0 w-7 h-7 flex items-center justify-center bg-primary text-primary-foreground rounded-full z-10 mr-4 ring-4 ring-background">
+          <i class="ri-rocket-line h-4 w-4"></i>
+        </div>
+        <!-- 내용 -->
+        <div class="flex-1">
+          <h5 class="text-primary font-bold text-lg">2024년</h5>
+          <div class="p-4 bg-muted rounded-lg mt-1">
+            <h6 class="font-semibold text-foreground">PRD v2.0 런칭</h6>
+            <p class="text-sm text-muted-foreground">AI 기반 리치 컴포넌트 아키텍처를 도입하여 고품질 콘텐츠 생성을 시작합니다.</p>
+          </div>
+        </div>
+      </li>
+      <!-- (Jinja2: {% raw %}{% endfor %}{% endraw %}) -->
+    </ul>
+  </div>
+</div>

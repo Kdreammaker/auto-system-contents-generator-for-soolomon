@@ -1,0 +1,70 @@
+<!--
+  Component: CrewComparison (개정판 Blueprint)
+  Description: 전문가 2인(아마라, 홍설화)을 비교하는 2단 그리드입니다.
+  AI는 이 HTML 구조를 생성하고, <div class="prose..."> 내부에 각 크루의 코멘트를 채워넣어야 합니다.
+-->
+<div 
+  class="soolomon-component my-10 animate-fadeIn" 
+  data-component="CrewComparison"
+>
+  <h3 class="text-2xl font-bold text-foreground mb-6 text-center">
+    The Crew's Choice
+  </h3>
+  
+  <div class="grid md:grid-cols-2 gap-6">
+    <!-- 왼쪽: 아마라 (Data Pick) -->
+    <div 
+      class_comment="bg-secondary/10 border-secondary/20 [globals.css], hover-lift [animations.css]"
+      class="relative bg-secondary/10 border border-secondary/20 rounded-xl p-6 hover-lift animate-slideUp"
+    >
+      <div class_comment="bg-secondary text-secondary-foreground [globals.css]"
+           class="absolute -top-4 left-6 bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-md">
+        Amara's Data Pick
+      </div>
+      <div class="mt-2">
+        <div class="flex items-center mb-4">
+          <div class="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center mr-3">
+            <i class="ri-bar-chart-box-line text-secondary text-xl"></i>
+          </div>
+          <div>
+            <h4 class_comment="text-secondary [globals.css]"
+                class="font-bold text-secondary">대중적인 선택</h4>
+            <p class="text-xs text-muted-foreground">실패 확률 0% 검증된 데이터</p>
+          </div>
+        </div>
+        <div class="prose prose-sm text-foreground/80 leading-relaxed">
+          <!-- AI가 여기에 아마라의 코멘트를 채웁니다 -->
+          <p>"제 분석 결과, 이 조합의 만족도는 92.4%입니다. 실패 없는 선택을 원한다면 이것이 정답입니다."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 오른쪽: 홍설화 (Artist's Pick) -->
+    <div 
+      class_comment="bg-primary/10 border-primary/20 [globals.css], hover-lift [animations.css]"
+      class="relative bg-primary/10 border border-primary/20 rounded-xl p-6 hover-lift animate-slideUp" 
+      style="animation-delay: 0.1s;"
+    >
+      <div class_comment="bg-primary text-primary-foreground [globals.css]"
+           class="absolute -top-4 right-6 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-md">
+        Seolhwa's Art Pick
+      </div>
+      <div class="mt-2">
+        <div class="flex items-center mb-4 justify-end">
+          <div class="text-right mr-3">
+            <h4 class_comment="text-primary-hover [globals.css]"
+                class="font-bold text-amber-600">특별한 영감</h4>
+            <p class="text-xs text-muted-foreground">영혼을 울리는 페어링</p>
+          </div>
+          <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+            <i class="ri-brush-line text-amber-600 text-xl"></i>
+          </div>
+        </div>
+        <div class="prose prose-sm text-foreground/80 leading-relaxed text-right">
+          <!-- AI가 여기에 홍설화의 코멘트를 채웁니다 -->
+          <p>"재미없게. 틀을 깨 보세요. 이 와인의 영혼이 당신의 미각과 만나는 순간, 완전히 새로운 차원의 경험이 열릴 겁니다."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

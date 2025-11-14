@@ -1,0 +1,59 @@
+<!--
+  Component: ProfileBlock (개정판 Blueprint)
+  Description: 전문가 크루(아마라, 홍설화 등)의 인용문이나 서술을 표시합니다.
+  AI는 아래 예시 중 맥락에 맞는 type의 HTML 스니펫을 생성해야 합니다.
+-->
+
+<!-- 
+  [AI 생성 예시 1: type="amara"]
+  (Jinja2: {% raw %}{% if profile.type == "amara" %}{% endraw %})
+  - globals.css의 'secondary' 색상 (bg-secondary/10, text-secondary) [cite: globals.css]를 사용합니다.
+  - 아마라(데이터)의 특성에 맞게 'ri-bar-chart-box-line' 아이콘을 사용합니다.
+-->
+<div class="soolomon-component my-8 animate-fadeIn" data-component="ProfileBlock" data-type="amara">
+  <div class="p-6 bg-secondary/10 border border-secondary/20 rounded-xl">
+    <div class="flex items-center space-x-3 mb-3">
+      <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-secondary text-secondary-foreground rounded-full">
+        <i class="ri-bar-chart-box-line text-xl"></i>
+      </div>
+      <div>
+        <h5 class="font-bold text-foreground">아마라 (Amara)</h5>
+        <p class="text-sm text-secondary font-medium">데이터 기반 '대중적인 선택'</p>
+      </div>
+    </div>
+    <div class="prose prose-base text-muted-foreground">
+      <p>
+        "제 분석 결과, 이 조합의 만족도는 92.4%입니다. 
+        대부분의 사용자가 이 안전한 조합에서 가장 높은 점수를 주었습니다. 
+        실패 없는 선택을 원한다면 이것이 정답입니다."
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- 
+  [AI 생성 예시 2: type="seolhwa"]
+  (Jinja2: {% raw %}{% if profile.type == "seolhwa" %}{% endraw %})
+  - globals.css의 'primary' 색상 (bg-primary/10, text-primary) [cite: globals.css]를 사용합니다.
+  - 홍설화(예술)의 특성에 맞게 'ri-brush-line' 아이콘을 사용합니다.
+-->
+<div class="soolomon-component my-8 animate-fadeIn" data-component="ProfileBlock" data-type="seolhwa">
+  <div class="p-6 bg-primary/10 border border-primary/20 rounded-xl">
+    <div class="flex items-center space-x-3 mb-3">
+      <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-primary-foreground rounded-full">
+        <i class="ri-brush-line text-xl"></i>
+      </div>
+      <div>
+        <h5 class="font-bold text-foreground">홍설화 (Seol-hwa)</h5>
+        <p class="text-sm text-primary font-medium">예술적 직관 '특별한 추천'</p>
+      </div>
+    </div>
+    <div class="prose prose-base text-muted-foreground">
+      <p>
+        "재미없게. 틀을 깨 보세요. 
+        이 와인의 영혼이 당신의 미각과 만나는 순간, 
+        완전히 새로운 차원의 경험이 열릴 겁니다. 데이터로는 설명할 수 없죠."
+      </p>
+    </div>
+  </div>
+</div>

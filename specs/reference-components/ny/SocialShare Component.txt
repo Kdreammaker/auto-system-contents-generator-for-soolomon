@@ -1,0 +1,64 @@
+<!--
+  Component: SocialShare (개정판 Blueprint)
+  Description: SNS 공유 및 링크 복사 기능을 제공합니다.
+  AI는 이 HTML 스니펫을 생성합니다. Alpine.js가 인터랙션을 처리합니다.
+-->
+
+<!-- 
+  [AI 생성 예시]
+  (Jinja2: {% raw %}{% set share = ... %}{% endraw %})
+-->
+<div 
+  class="soolomon-component my-8 py-6 border-t border-b border-border" 
+  data-component="SocialShare"
+>
+  <h5 class="text-lg font-semibold text-foreground mb-4">이 콘텐츠 공유하기</h5>
+  <div 
+    class="flex flex-wrap gap-3"
+    x-data="{ copied: false }"
+  >
+    <!-- 링크 복사 버튼 (Alpine.js) -->
+    <button
+      x-on:click="
+        navigator.clipboard.writeText(window.location.href);
+        copied = true;
+        setTimeout(() => { copied = false }, 3000);
+      "
+      class="flex items-center space-x-2 px-4 py-2 rounded-lg transition-all 
+             font-medium text-sm h-10
+             bg-muted text-muted-foreground hover:bg-border"
+      :class="{ 'bg-success-bg text-success-text': copied }"
+    >
+      <i x-show="!copied" class="ri-link"></i>
+      <i x-show="copied" class="ri-check-line" style="display: none;"></i>
+      <span x-show="!copied">링크 복사</span>
+      <span x-show="copied" style="display: none;">복사 완료!</span>
+    </button>
+
+    <!-- Kakao (예시) -->
+    <a 
+      href="#" 
+      onclick="alert('Kakao Share (Implement me)'); return false;"
+      class="flex items-center justify-center space-x-2 px-4 py-2 rounded-lg 
+             font-medium text-sm text-black h-10"
+      style="background-color: #FEE500;"
+      aria-label="Share on KakaoTalk"
+    >
+      <i class="ri-kakao-talk-fill"></i>
+      <span>카카오톡</span>
+    </a>
+    
+    <!-- Facebook (예시) -->
+    <a 
+      href="#" 
+      onclick="alert('Facebook Share (Implement me)'); return false;"
+      class="flex items-center justify-center space-x-2 px-4 py-2 rounded-lg 
+             font-medium text-sm text-white h-10"
+      style="background-color: #1877F2;"
+      aria-label="Share on Facebook"
+    >
+      <i class="ri-facebook-fill"></i>
+      <span>페이스북</span>
+    </a>
+  </div>
+</div>

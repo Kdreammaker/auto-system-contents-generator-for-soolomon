@@ -1,0 +1,69 @@
+<!--
+  Component: ComparisonTable (개정판 Blueprint)
+  Description: 데이터 비교표를 생성합니다.
+  AI는 이 HTML 구조를 생성하고, 'headers'와 'rows' 데이터를 채워넣어야 합니다.
+  (AI must generate this HTML structure and populate the 'headers' and 'rows' data)
+-->
+
+<!-- 
+  [AI 생성 예시]
+  (Jinja2: {% raw %}{% set table = ... %}{% endraw %})
+  - AI가 'table' 객체(headers, rows)를 기반으로 아래와 같은 순수 HTML을 생성합니다.
+-->
+<div 
+  class="soolomon-component my-8 animate-fadeIn" 
+  data-component="ComparisonTable"
+>
+  <div class="rounded-lg border border-border overflow-hidden">
+    <!-- 모바일 반응형을 위한 가로 스크롤 컨테이너 -->
+    <div class="overflow-x-auto">
+      <table class="w-full min-w-[600px] text-left border-collapse">
+        <!-- 테이블 헤더 -->
+        <thead class="bg-muted">
+          <tr>
+            <!-- (Jinja2: {% raw %}{% for header in table.headers %}{% endraw %}) -->
+            <th class="p-4 text-sm font-semibold text-foreground tracking-wider">
+              구분
+            </th>
+            <th class="p-4 text-sm font-semibold text-foreground tracking-wider">
+              라거 (Lager)
+            </th>
+            <th class="p-4 text-sm font-semibold text-foreground tracking-wider">
+              에일 (Ale)
+            </th>
+            <!-- (Jinja2: {% raw %}{% endfor %}{% endraw %}) -->
+          </tr>
+        </thead>
+        <!-- 테이블 바디 -->
+        <tbody class="bg-background">
+          <!-- (Jinja2: {% raw %}{% for row in table.rows %}{% endraw %}) -->
+          <tr class="border-b border-border last:border-b-0">
+            <!-- (Jinja2: {% raw %}{% for cell in row %}{% endraw %}) -->
+            <td class="p-4 text-muted-foreground font-medium">
+              특징
+            </td>
+            <td class="p-4 text-foreground">
+              깔끔하고 청량함
+            </td>
+            <td class="p-4 text-foreground">
+              풍부한 향과 묵직함
+            </td>
+            <!-- (Jinja2: {% raw %}{% endfor %}{% endraw %}) -->
+          </tr>
+          <tr class="border-b border-border last:border-b-0">
+            <td class="p-4 text-muted-foreground font-medium">
+              발효 방식
+            </td>
+            <td class="p-4 text-foreground">
+              하면 발효 (저온)
+            </td>
+            <td class="p-4 text-foreground">
+              상면 발효 (고온)
+            </td>
+          </tr>
+          <!-- (Jinja2: {% raw %}{% endfor %}{% endraw %}) -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

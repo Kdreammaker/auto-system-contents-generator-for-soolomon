@@ -1,0 +1,98 @@
+<!--
+  Component: ImageGallery (개정판 Blueprint)
+  Description: 이미지 슬라이더 또는 비디오 플레이어를 생성합니다.
+  AI는 아래 두 가지 타입(image, video) 중 하나의 HTML 스니펫을 생성해야 합니다.
+-->
+
+<!-- 
+  [AI 생성 예시 1: type="image"] (Alpine.js 기반)
+  (Jinja2: {% raw %}{% if gallery.type == "image" %}{% endraw %})
+  - AI_CONTENT_GENERATOR_GUIDE.md [cite: AI_CONTENT_GENERATOR_GUIDE.md]의 "3. 갤러리" 로직을 100% 준수합니다.
+  - AI가 'images' 배열에 이미지 URL을 채워넣어야 합니다.
+-->
+<div 
+  class="soolomon-component my-8 animate-fadeIn" 
+  data-component="ImageGallery" 
+  data-type="image"
+  x-data="{ 
+    selected: 0, 
+    images: [
+      'https://placehold.co/600x400/FFBF00/191970?text=Image+1', 
+      'https://placehold.co/600x400/191970/FFBF00?text=Image+2', 
+      'https://placehold.co/600x400/f3f4f6/333?text=Image+3'
+    ] 
+  }"
+>
+  <!-- 메인 이미지 -->
+  <div class="relative aspect-video bg-muted rounded-xl overflow-hidden mb-2 shadow-lg">
+    <!-- 루프 대신 x-show를 사용한 동적 이미지 표시 -->
+    <template x-for="(image, index) in images" :key="index">
+      <img
+        x-show="selected === index"
+        :src="image"
+        alt="갤러리 메인 이미지"
+        class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        style="display: none;"
+      >
+    </template>
+    <!-- 이전/다음 버튼 -->
+    <button 
+      x-on:click="selected = (selected - 1 + images.length) % images.length"
+      class="absolute left-3 top-1/2 -translate-y-1/2 bg-background/50 text-foreground hover:bg-background/80 p-2 rounded-full transition-all"
+    >
+      <i class="ri-arrow-left-s-line h-5 w-5"></i>
+    </button>
+    <button 
+      x-on:click="selected = (selected + 1) % images.length"
+      class="absolute right-3 top-1/2 -translate-y-1/2 bg-background/50 text-foreground hover:bg-background/80 p-2 rounded-full transition-all"
+    >
+      <i class="ri-arrow-right-s-line h-5 w-5"></i>
+    </button>
+  </div>
+  
+  <!-- 썸네일 -->
+  <div class="grid grid-cols-5 gap-2">
+    <template x-for="(image, index) in images" :key="index">
+      <button
+        x-on:click="selected = index"
+        :class="{ 'ring-2 ring-primary ring-offset-2': selected === index, 'opacity-60 hover:opacity-100': selected !== index }"
+        class="aspect-video bg-muted rounded-lg overflow-hidden transition-all duration-200"
+      >
+        <img
+          :src="image"
+          alt="갤러리 썸네일"
+          class="w-full h-full object-cover"
+        >
+      </button>
+    </template>
+  </div>
+</div>
+
+<!-- 
+  [AI 생성 예시 2: type="video"]
+  (Jinja2: {% raw %}{% if gallery.type == "video" %}{% endraw %})
+  - 반응형 16:9 비율(aspect-video)을 유지하는 <iframe> 래퍼입니다.
+  - AI가 'videoUrl'을 채워넣어야 합니다. (예: YouTube embed URL)
+-->
+<div 
+  class="soolomon-component my-8 animate-fadeIn" 
+  data-component="ImageGallery" 
+  data-type="video"
+>
+  <div class="aspect-video w-full relative">
+    <iframe 
+      class="absolute inset-0 w-full h-full rounded-xl shadow-lg" 
+      src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+      title="YouTube video player" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>

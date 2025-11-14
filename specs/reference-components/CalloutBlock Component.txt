@@ -1,0 +1,84 @@
+<!--
+  Component: CalloutBlock (개정판 Blueprint)
+  Description: 4가지 타입(info, success, warning, error, quote)의 텍스트 강조 박스입니다.
+  AI는 아래 4가지 예시 중 맥락에 맞는 HTML 스니펫을 생성해야 합니다.
+  SVG 아이콘 경로는 remixicon.com 또는 유사 아이콘 라이브러리(Phosphor 등)를 참조합니다.
+-->
+
+<!-- 
+  [AI 생성 예시 1: type="info" (정보)]
+  - globals.css의 'info' 상태 색상 (bg-info-bg, border-info, text-info-text) [cite: globals.css]를 사용합니다.
+-->
+<div 
+  class="soolomon-component my-6 p-4 border-l-4 rounded-r-lg bg-info-bg border-info animate-fadeIn" 
+  data-component="CalloutBlock" 
+  data-type="info"
+>
+  <div class="flex items-start">
+    <svg class="w-5 h-5 text-info mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+    </svg>
+    <div class="prose prose-sm max-w-none text-info-text">
+      <!-- AI가 여기에 'title'과 'content'를 채웁니다 -->
+      <h4 class_comment="!text-inherit" 
+          class="font-semibold mb-1 !mt-0 !text-inherit">알아두세요!</h4>
+      <p class="!text-inherit">맥주는 4-6도로 마시는 것이 가장 맛있습니다.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 
+  [AI 생성 예시 2: type="success" (성공/팁)]
+  - globals.css의 'success' 상태 색상 (bg-success-bg, border-success, text-success-text) [cite: globals.css]를 사용합니다.
+-->
+<div 
+  class="soolomon-component my-6 p-4 border-l-4 rounded-r-lg bg-success-bg border-success animate-fadeIn" 
+  data-component="CalloutBlock" 
+  data-type="success"
+>
+  <div class="flex items-start">
+    <svg class="w-5 h-5 text-success mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+    </svg>
+    <div class="prose prose-sm max-w-none text-success-text">
+      <h4 class="font-semibold mb-1 !mt-0 !text-inherit">K-언니의 비밀 팁</h4>
+      <p class="!text-inherit">불닭볶음면에 마요네즈를 섞으면 완벽한 '불닭 마요'가 됩니다.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 
+  [AI 생성 예시 3: type="warning" (경고)]
+  - globals.css의 'warning' 상태 색상 (bg-warning-bg, border-warning, text-warning-text) [cite: globals.css]를 사용합니다.
+-->
+<div 
+  class="soolomon-component my-6 p-4 border-l-4 rounded-r-lg bg-warning-bg border-warning animate-fadeIn" 
+  data-component="CalloutBlock" 
+  data-type="warning"
+>
+  <div class="flex items-start">
+    <svg class="w-5 h-5 text-warning mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+    </svg>
+    <div class="prose prose-sm max-w-none text-warning-text">
+      <h4 class="font-semibold mb-1 !mt-0 !text-inherit">주의하세요!</h4>
+      <p class="!text-inherit">과도한 음주는 건강에 해롭습니다.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 
+  [AI 생성 예시 4: type="quote" (인용)]
+  - globals.css의 'primary' [cite: globals.css] 색상을 border-color로 사용합니다.
+-->
+<blockquote 
+  class="soolomon-component my-8 pl-6 border-l-4 border-primary italic text-lg text-muted-foreground animate-fadeIn"
+  data-component="CalloutBlock" 
+  data-type="quote"
+>
+  <!-- AI가 여기에 인용구와 footer를 채웁니다 -->
+  <p>"맥주와 음식의 완벽한 조화는 미식의 정점입니다."</p>
+  <footer class="mt-2 text-sm not-italic text-foreground">
+    — 맥주 소믈리에 김철수
+  </footer>
+</blockquote>

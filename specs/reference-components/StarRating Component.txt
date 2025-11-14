@@ -1,0 +1,55 @@
+<!--
+  Component: StarRating (개정판 Blueprint)
+  Description: 시각적인 별점 점수를 표시합니다.
+  AI는 'score'와 'max' 값을 기반으로, style="width: ...%" 값을 계산하여 생성해야 합니다.
+-->
+
+<!-- 
+  [AI 생성 예시 (score: 4.3, max: 5)]
+  (Jinja2: {% raw %}{% set score = 4.3 %}{% endraw %})
+  (Jinja2: {% raw %}{% set max = 5 %}{% endraw %})
+  (AI가 (4.3 / 5) * 100 = 86% 를 계산하여 'width: 86%'를 생성)
+-->
+<div 
+  class="soolomon-component my-4 flex items-center space-x-2" 
+  data-component="StarRating"
+>
+  <!-- 별점 숫자 -->
+  <span class="font-bold text-foreground text-lg">4.3</span>
+  
+  <!-- 별 아이콘 -->
+  <div class="relative flex text-2xl text-muted">
+    <!-- 
+      배경 (빈 별 5개)
+      - globals.css의 'muted' [cite: globals.css] 색상 사용
+    -->
+    <div class="flex">
+      <i class="ri-star-fill"></i>
+      <i class="ri-star-fill"></i>
+      <i class="ri-star-fill"></i>
+      <i class="ri-star-fill"></i>
+      <i class="ri-star-fill"></i>
+    </div>
+    
+    <!-- 
+      전경 (채워진 별 5개)
+      - globals.css의 'primary' [cite: globals.css] 색상 사용
+      - 이 div의 'width'를 조절하여 별점을 표시합니다.
+    -->
+    <div 
+      class="absolute top-0 left-0 h-full flex overflow-hidden text-primary" 
+      style="width: 86%;" <!-- AI가 계산한 값 (4.3 / 5 * 100) -->
+    >
+      <div class="flex flex-nowrap">
+        <i class="ri-star-fill flex-shrink-0"></i>
+        <i class="ri-star-fill flex-shrink-0"></i>
+        <i class="ri-star-fill flex-shrink-0"></i>
+        <i class="ri-star-fill flex-shrink-0"></i>
+        <i class="ri-star-fill flex-shrink-0"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- 최대 점수 (옵션) -->
+  <span class="text-sm text-muted-foreground">(5점 만점)</span>
+</div>

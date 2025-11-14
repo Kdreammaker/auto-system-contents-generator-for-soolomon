@@ -1,0 +1,66 @@
+<!--
+  Component: InteractiveTabs (개정판 Blueprint)
+  Description: Alpine.js를 사용하는 탭 컴포넌트입니다.
+  AI는 'activeTab'의 초기값('tab1')을 설정하고,
+  버튼과 패널의 ID('tab1', 'tab2'...)를 일치시켜
+  아래와 같은 순수 HTML 스니펫을 생성해야 합니다.
+  (AI must generate this exact HTML snippet structure)
+-->
+<div 
+  class="soolomon-component my-8" 
+  data-component="InteractiveTabs"
+  x-data="{ activeTab: 'tab1' }"
+>
+  <!-- 탭 헤더 (네비게이션) -->
+  <div class_comment="bg-muted p-1 rounded-lg [globals.css]">
+    <div class="flex space-x-1 bg-muted p-1 rounded-lg mb-6 overflow-x-auto">
+      <!-- 탭 1 버튼 -->
+      <button
+        x-on:click="activeTab = 'tab1'"
+        :class="{ 
+          'bg-background text-primary shadow-sm': activeTab === 'tab1', 
+          'text-muted-foreground hover:bg-background/50': activeTab !== 'tab1' 
+        }"
+        class_comment="bg-background text-primary [globals.css]"
+        class="flex-1 flex items-center justify-center space-x-2 px-4 py-3 rounded-md transition-all duration-200 text-sm font-medium whitespace-nowrap"
+      >
+        <span>재료</span>
+      </button>
+      
+      <!-- 탭 2 버튼 -->
+      <button
+        x-on:click="activeTab = 'tab2'"
+        :class="{ 
+          'bg-background text-primary shadow-sm': activeTab === 'tab2', 
+          'text-muted-foreground hover:bg-background/50': activeTab !== 'tab2' 
+        }"
+        class="flex-1 flex items-center justify-center space-x-2 px-4 py-3 rounded-md transition-all duration-200 text-sm font-medium whitespace-nowrap"
+      >
+        <span>레시피</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 탭 콘텐츠 -->
+  <div class_comment="border-border rounded-xl [globals.css]">
+    <div class="bg-background border border-border rounded-xl p-6 shadow-sm min-h-[200px]">
+      <!-- 탭 1 패널 -->
+      <div 
+        x-show="activeTab === 'tab1'" 
+        class_comment="animate-fadeIn [animations.css]"
+        class="prose prose-lg max-w-none text-foreground animate-fadeIn"
+      >
+        <p>탭 1 (재료)의 내용입니다. AI가 여기에 실제 콘텐츠를 채웁니다.</p>
+      </div>
+      
+      <!-- 탭 2 패널 -->
+      <div 
+        x-show="activeTab === 'tab2'" 
+        class="prose prose-lg max-w-none text-foreground animate-fadeIn"
+        style="display: none;"
+      >
+        <p>탭 2 (레시피)의 내용입니다. AI가 여기에 실제 콘텐츠를 채웁니다.</p>
+      </div>
+    </div>
+  </div>
+</div>

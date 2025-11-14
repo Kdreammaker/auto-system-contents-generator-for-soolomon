@@ -1,0 +1,75 @@
+<!--
+  Component: ListBlock (개정판 Blueprint)
+  Description: 체크리스트 또는 단계별 가이드를 생성합니다.
+  AI는 아래 두 가지 타입(check, step) 중 맥락에 맞는 HTML 스니펫을 생성해야 합니다.
+  (AI must generate ONE of the following HTML snippets based on context)
+-->
+
+<!-- 
+  [AI 생성 예시 1: type="check"]
+  (Jinja2: {% raw %}{% if list.type == "check" %}{% endraw %})
+  - globals.css의 'success' 상태 색상 (bg-success-bg, text-success-text) [cite: globals.css]을 사용합니다.
+  - animations.css의 'animate-fadeIn' [cite: animations.css]을 적용합니다.
+-->
+<div class="soolomon-component my-8" data-component="ListBlock" data-type="check">
+  <ul class="space-y-3">
+    <!-- AI가 list.items 배열을 반복하여 아래 li를 생성 -->
+    <li class="flex items-start p-4 bg-success-bg rounded-lg animate-fadeIn" style="animation-delay: 0.1s;">
+      <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-success text-success-foreground rounded-full mr-3">
+        <i class="ri-check-line h-4 w-4"></i>
+      </div>
+      <span class="text-success-text font-medium">여행용 돗자리 챙기기</span>
+    </li>
+    <li class="flex items-start p-4 bg-success-bg rounded-lg animate-fadeIn" style="animation-delay: 0.2s;">
+      <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-success text-success-foreground rounded-full mr-3">
+        <i class="ri-check-line h-4 w-4"></i>
+      </div>
+      <span class="text-success-text font-medium">보조 배터리 (필수!)</span>
+    </li>
+    <li class="flex items-start p-4 bg-success-bg rounded-lg animate-fadeIn" style="animation-delay: 0.3s;">
+      <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-success text-success-foreground rounded-full mr-3">
+        <i class="ri-check-line h-4 w-4"></i>
+      </div>
+      <span class="text-success-text font-medium">물티슈와 쓰레기 봉투</span>
+    </li>
+  </ul>
+</div>
+
+<!-- 
+  [AI 생성 예시 2: type="step"]
+  (Jinja2: {% raw %}{% if list.type == "step" %}{% endraw %})
+  - globals.css의 'primary' 브랜드 색상 (bg-primary, text-primary-foreground) [cite: globals.css]을 사용합니다.
+  - animations.css의 'animate-fadeIn' [cite: animations.css]을 적용합니다.
+-->
+<div class="soolomon-component my-8" data-component="ListBlock" data-type="step">
+  <ol class="relative border-l border-border ml-3">
+    <!-- AI가 list.items 배열을 반복하여 아래 li를 생성 -->
+    <li class="mb-6 ml-6 animate-fadeIn" style="animation-delay: 0.1s;">
+      <span class="absolute -left-3.5 flex items-center justify-center w-7 h-7 bg-primary text-primary-foreground rounded-full font-bold">
+        1
+      </span>
+      <div class="p-4 bg-muted rounded-lg">
+        <h5 class="text-md font-semibold text-foreground">앱 켜고 '배달' 선택</h5>
+        <p class="text-sm text-muted-foreground">먼저 배달의민족 앱을 켭니다.</p>
+      </div>
+    </li>
+    <li class="mb-6 ml-6 animate-fadeIn" style="animation-delay: 0.2s;">
+      <span class="absolute -left-3.5 flex items-center justify-center w-7 h-7 bg-primary text-primary-foreground rounded-full font-bold">
+        2
+      </span>
+      <div class="p-4 bg-muted rounded-lg">
+        <h5 class="text-md font-semibold text-foreground">한강공원 주소 입력</h5>
+        <p class="text-sm text-muted-foreground">현재 위치(예: 여의도 2주차장)를 정확히 입력합니다.</p>
+      </div>
+    </li>
+    <li class="ml-6 animate-fadeIn" style="animation-delay: 0.3s;">
+      <span class="absolute -left-3.5 flex items-center justify-center w-7 h-7 bg-primary text-primary-foreground rounded-full font-bold">
+        3
+      </span>
+      <div class="p-4 bg-muted rounded-lg">
+        <h5 class="text-md font-semibold text-foreground">주문 및 픽업</h5>
+        <p class="text-sm text-muted-foreground">주문 후 배달원과 통화하여 픽업합니다.</p>
+      </div>
+    </li>
+  </ol>
+</div>

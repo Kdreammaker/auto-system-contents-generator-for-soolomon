@@ -1,0 +1,88 @@
+<!--
+  Component: MediaCard (개정판 Blueprint)
+  Description: 제품, 레시피, 장소 등을 소개하는 카드입니다.
+  AI는 'type'에 따라 'product' 또는 'recipe' HTML 스니펫을 생성해야 합니다.
+-->
+
+<!-- 
+  [AI 생성 예시 1: type="product"]
+  (Jinja2: {% raw %}{% if card.type == "product" %}{% endraw %})
+  - 'card.price', 'card.description' 데이터를 채웁니다.
+  - 'bg-secondary' [cite: globals.css] 뱃지를 사용합니다.
+-->
+<div 
+  class="soolomon-component group relative bg-card border border-border rounded-xl overflow-hidden shadow-lg hover-lift animate-fadeIn" 
+  data-component="MediaCard"
+  data-type="product"
+>
+  <div class="relative overflow-hidden">
+    <img
+      src="https://placehold.co/400x300/191970/FFBF00?text=Soolomon+Wine"
+      alt="카베르네 소비뇽 2018"
+      class_comment="group-hover:scale-110 [animations.css]"
+      class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+    />
+    <div class="absolute top-3 left-3">
+      <span class_comment="bg-secondary text-secondary-foreground [globals.css]"
+            class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+        Product
+      </span>
+    </div>
+  </div>
+  
+  <div class="p-5">
+    <h4 class_comment="group-hover:text-primary [globals.css]"
+        class="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+      카베르네 소비뇽 2018
+    </h4>
+    <p class="text-lg font-semibold text-primary mb-3">₩120,000</p>
+    <p class="text-sm text-muted-foreground line-clamp-3">
+      나파 밸리 산, 풀바디 레드와인. 스테이크와 완벽한 조화를 이룹니다.
+    </p>
+  </div>
+</div>
+
+<!-- 
+  [AI 생성 예시 2: type="recipe"]
+  (Jinja2: {% raw %}{% if card.type == "recipe" %}{% endraw %})
+  - 'card.time', 'card.difficulty' 데이터를 채웁니다.
+  - 'bg-primary' [cite: globals.css] 뱃지를 사용합니다.
+-->
+<div 
+  class="soolomon-component group relative bg-card border border-border rounded-xl overflow-hidden shadow-lg hover-lift animate-fadeIn" 
+  data-component="MediaCard"
+  data-type="recipe"
+>
+  <div class="relative overflow-hidden">
+    <img
+      src="https://placehold.co/400x300/FFBF00/191970?text=Soolomon+Recipe"
+      alt="불닭 마요"
+      class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+    />
+    <div class="absolute top-3 left-3">
+      <span class_comment="bg-primary text-primary-foreground [globals.css]"
+            class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+        Recipe
+      </span>
+    </div>
+  </div>
+  
+  <div class="p-5">
+    <h4 class="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+      불닭 마요
+    </h4>
+    <div class="flex items-center space-x-4 text-muted-foreground mb-3">
+      <span class="flex items-center text-sm">
+        <i class="ri-time-line mr-1"></i>
+        5분
+      </span>
+      <span class="flex items-center text-sm">
+        <i class="ri-service-line mr-1"></i>
+        하
+      </span>
+    </div>
+    <p class="text-sm text-muted-foreground line-clamp-3">
+      매운 불닭볶음면과 마요네즈의 환상적인 조합. K-편의점 꿀조합의 정석.
+    </p>
+  </div>
+</div>
