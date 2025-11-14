@@ -8,11 +8,11 @@ services:
   # 2. Web (Flask 백엔드 및 대쉬보드)
   web:
     build: .
-    command: flask --app dashboard.app run --host=0.0.0.0 --port=3000
+    command: flask --app dashboard.app run --host=0.0.0.0 --port=3001
     volumes:
       - .:/app  # [★] 로컬 폴더와 컨테이너 내부를 동기화
     ports:
-      - "3001:3000"
+      - "3001:3001"
     env_file:
       - .env    # .env 파일의 API 키를 컨테이너로 전달
     environment:
