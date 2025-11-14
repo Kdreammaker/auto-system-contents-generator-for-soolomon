@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soolomon Content Preview</title>
+    <!-- Tailwind CSS -->
+    <link href="{{ url_for('static', filename='css/globals.css') }}" rel="stylesheet">
+    <!-- Custom Animations -->
+    <link href="{{ url_for('static', filename='css/animations.css') }}" rel="stylesheet">
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-background text-foreground">
+    <div id="content-container" class="p-4">
+        <!-- AI가 생성한 HTML 콘텐츠가 여기에 동적으로 삽입됩니다. -->
+        <div class="text-center text-muted-foreground p-10">
+            <p>왼쪽 텍스트 영역에 HTML을 입력하고 '미리보기 업데이트' 버튼을 클릭하세요.</p>
+        </div>
+    </div>
+</body>
+</html>
