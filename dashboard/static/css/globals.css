@@ -1,0 +1,345 @@
+@import "tailwindcss";
+
+/**
+ * Soolomon Design System - OKLCH Color Tokens
+ * 
+ * 🎨 시각적 위계 (Visual Hierarchy):
+ * 
+ * 1. Primary (Warm Amber #FFBF00) - 메인 브랜드 색상 ⭐
+ *    - 용도: 로고, 주요 CTA 버튼, 중요한 강조
+ *    - 특징: 밝고 친근한 느낌, 고객 친화적
+ * 
+ * 2. Secondary (Midnight Blue #191970) - 보조 색상 🌙
+ *    - 용도: 보조 버튼, 링크, 텍스트 강조
+ *    - 특징: 차분하고 신뢰감, 브랜드 정체성
+ * 
+ * 3. Accent (Warm Amber) - Primary와 동일 ✨
+ *    - 용도: CTA, 중요한 액션 버튼
+ *    - 특징: Primary와 동일하게 사용
+ * 
+ * 4. Background - 깔끔한 배경 🤍
+ *    - Light: Pure White (#FFFFFF)
+ *    - Dark: Dark Navy
+ *    - 섹션 구분: 밝고 연한 배경 (Muted)
+ * 
+ * 5. Foreground - 텍스트 📝
+ *    - Light: Dark Gray (높은 명도 대비)
+ *    - Dark: Light Gray
+ */
+
+@layer base {
+  :root {
+    /* ===== Light Mode ===== */
+    
+    /* Background & Foreground - 기본 배경과 텍스트 */
+    --background: oklch(1 0 0);                    /* Pure White #FFFFFF */
+    --foreground: oklch(0.15 0.02 85);             /* Dark Gray - 높은 명도 대비 */
+    
+    /* Gray Scale (원본 기반) */
+    --gray-50: oklch(0.99 0.005 85);               /* #f9fafb */
+    --gray-100: oklch(0.96 0.01 85);               /* #f3f4f6 */
+    --gray-200: oklch(0.92 0.015 85);              /* #e5e7eb */
+    --gray-300: oklch(0.85 0.02 85);               /* #d1d5db */
+    --gray-400: oklch(0.7 0.03 85);                /* #9ca3af */
+    --gray-500: oklch(0.55 0.04 85);               /* #6b7280 */
+    --gray-600: oklch(0.45 0.05 85);               /* #4b5563 */
+    --gray-700: oklch(0.35 0.05 85);               /* #374151 */
+    --gray-800: oklch(0.25 0.04 85);               /* #1f2937 */
+    --gray-900: oklch(0.15 0.03 85);               /* #111827 */
+    
+    /* Amber Scale (원본 기반) */
+    --amber-50: oklch(0.98 0.03 85);               /* #fffbeb */
+    --amber-100: oklch(0.95 0.06 85);              /* #fef3c7 */
+    --amber-200: oklch(0.92 0.1 85);               /* #fde68a */
+    --amber-300: oklch(0.88 0.13 85);              /* #fcd34d */
+    --amber-400: oklch(0.85 0.15 85);              /* #fbbf24 */
+    --amber-500: oklch(0.78 0.16 85);              /* #f59e0b */
+    --amber-600: oklch(0.7 0.17 85);               /* #d97706 */
+    --amber-700: oklch(0.6 0.16 85);               /* #b45309 */
+    --amber-800: oklch(0.5 0.14 85);               /* #92400e */
+    --amber-900: oklch(0.4 0.12 85);               /* #78350f */
+    
+    /* ===== 시각적 위계 1: Primary (메인 브랜드 색상) ===== */
+    --primary: oklch(0.85 0.15 85);                /* Warm Amber #FFBF00 - 밝고 친근함 */
+    --primary-foreground: oklch(0.15 0.02 85);     /* Dark Gray - 명도 대비 8.5:1 */
+    --primary-hover: oklch(0.8 0.18 85);           /* 약간 어두운 Amber */
+    --primary-active: oklch(0.75 0.2 85);          /* 더 어두운 Amber */
+    
+    /* ===== 시각적 위계 2: Secondary (보조 색상) ===== */
+    --secondary: oklch(0.25 0.2 260);              /* Midnight Blue #191970 - 차분하고 신뢰감 */
+    --secondary-foreground: oklch(0.98 0.02 260);  /* White - 명도 대비 12:1 */
+    --secondary-hover: oklch(0.3 0.25 260);        /* 약간 밝은 Navy */
+    --secondary-active: oklch(0.35 0.3 260);       /* 더 밝은 Navy */
+    
+    /* ===== 시각적 위계 3: Accent (CTA 강조) ===== */
+    --accent: oklch(0.85 0.15 85);                 /* Warm Amber - Primary와 동일 */
+    --accent-foreground: oklch(0.15 0.02 85);      /* Dark Gray */
+    --accent-hover: oklch(0.8 0.18 85);
+    --accent-active: oklch(0.75 0.2 85);
+    
+    /* ===== 배경 및 표면 (섹션 구분용) ===== */
+    --muted: oklch(0.98 0.01 85);                  /* 밝고 연한 배경 - 섹션 구분 */
+    --muted-foreground: oklch(0.45 0.05 85);       /* Medium Gray */
+    --muted-hover: oklch(0.96 0.02 85);            /* 약간 어두운 배경 */
+    
+    --card: oklch(0.99 0.005 85);                  /* 거의 흰색 - 카드 배경 */
+    --card-foreground: oklch(0.15 0.02 85);        /* Dark Gray */
+    --surface: oklch(0.99 0.005 85);               /* 거의 흰색 - 표면 */
+    --surface-variant: oklch(0.97 0.01 85);        /* 약간 어두운 표면 */
+    
+    /* Border */
+    --border: oklch(0.88 0.02 85);
+    --border-hover: oklch(0.8 0.05 85);
+    --border-focus: oklch(0.25 0.2 260);           /* Navy */
+    
+    /* Input */
+    --input: oklch(0.98 0.01 85);
+    --input-border: oklch(0.85 0.03 85);
+    --input-focus: oklch(0.25 0.2 260);            /* Navy */
+    
+    /* Ring (Focus) */
+    --ring: oklch(0.25 0.2 260);                   /* Navy */
+    --ring-offset: oklch(1 0 0);                   /* White */
+    
+    /* ===== 상태 색상 (Status Colors) ===== */
+    /* Success - 밝은 배경 + 진한 텍스트 패턴 */
+    --success: oklch(0.7 0.15 140);                /* Green */
+    --success-foreground: oklch(0.98 0.02 140);    /* Light Green */
+    --success-bg: oklch(0.95 0.05 140);            /* 밝은 Green 배경 */
+    --success-text: oklch(0.35 0.15 140);          /* 진한 Green 텍스트 */
+    
+    /* Warning - 밝은 배경 + 진한 텍스트 패턴 */
+    --warning: oklch(0.8 0.15 80);                 /* Yellow */
+    --warning-foreground: oklch(0.2 0.05 80);      /* Dark Yellow */
+    --warning-bg: oklch(0.95 0.05 80);             /* 밝은 Yellow 배경 */
+    --warning-text: oklch(0.4 0.15 80);            /* 진한 Yellow 텍스트 */
+    
+    /* Error/Destructive - 밝은 배경 + 진한 텍스트 패턴 */
+    --error: oklch(0.65 0.2 20);                   /* Red */
+    --error-foreground: oklch(0.98 0.02 20);       /* Light Red */
+    --error-bg: oklch(0.96 0.05 20);               /* 밝은 Red 배경 - 가독성 개선 */
+    --error-text: oklch(0.4 0.2 20);               /* 진한 Red 텍스트 */
+    
+    --destructive: oklch(0.65 0.2 20);             /* Red - Error와 동일 */
+    --destructive-foreground: oklch(0.98 0.02 20); /* Light Red */
+    --destructive-bg: oklch(0.96 0.05 20);         /* 밝은 Red 배경 */
+    --destructive-text: oklch(0.4 0.2 20);         /* 진한 Red 텍스트 */
+    
+    /* Info - 밝은 배경 + 진한 텍스트 패턴 */
+    --info: oklch(0.7 0.15 240);                   /* Blue */
+    --info-foreground: oklch(0.98 0.02 240);       /* Light Blue */
+    --info-bg: oklch(0.95 0.05 240);               /* 밝은 Blue 배경 */
+    --info-text: oklch(0.35 0.15 240);             /* 진한 Blue 텍스트 */
+    
+    /* Radius */
+    --radius-sm: 0.25rem;    /* 4px */
+    --radius-md: 0.5rem;     /* 8px */
+    --radius-lg: 0.75rem;    /* 12px */
+    --radius-xl: 1rem;       /* 16px */
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
+  .dark {
+    /* ===== Dark Mode ===== */
+    
+    /* Background & Foreground - 다크 모드 기본 */
+    --background: oklch(0.15 0.02 260);            /* Dark Navy - 브랜드 정체성 */
+    --foreground: oklch(0.95 0.01 85);             /* Light Gray - 높은 명도 대비 */
+    
+    /* ===== 시각적 위계 1: Primary (메인 브랜드 색상) ===== */
+    --primary: oklch(0.85 0.15 85);                /* Warm Amber - 라이트 모드와 동일 */
+    --primary-foreground: oklch(0.15 0.02 85);     /* Dark Gray */
+    --primary-hover: oklch(0.88 0.18 85);          /* 약간 밝은 Amber */
+    --primary-active: oklch(0.9 0.2 85);           /* 더 밝은 Amber */
+    
+    /* ===== 시각적 위계 2: Secondary (보조 색상) ===== */
+    --secondary: oklch(0.4 0.2 260);               /* Lighter Navy - 다크 모드에서 가시성 */
+    --secondary-foreground: oklch(0.95 0.02 260);  /* Light Gray */
+    --secondary-hover: oklch(0.45 0.25 260);       /* 약간 밝은 Navy */
+    --secondary-active: oklch(0.5 0.3 260);        /* 더 밝은 Navy */
+    
+    /* ===== 시각적 위계 3: Accent (CTA 강조) ===== */
+    --accent: oklch(0.85 0.15 85);                 /* Warm Amber - 라이트 모드와 동일 */
+    --accent-foreground: oklch(0.15 0.02 85);      /* Dark Gray */
+    --accent-hover: oklch(0.88 0.18 85);
+    --accent-active: oklch(0.9 0.2 85);
+    
+    /* ===== 배경 및 표면 (섹션 구분용) ===== */
+    --muted: oklch(0.2 0.02 260);                  /* 약간 밝은 Navy - 섹션 구분 */
+    --muted-foreground: oklch(0.65 0.05 85);       /* Medium Gray */
+    --muted-hover: oklch(0.25 0.03 260);           /* 더 밝은 Navy */
+    
+    --card: oklch(0.18 0.02 260);                  /* 약간 밝은 Navy - 카드 배경 */
+    --card-foreground: oklch(0.95 0.01 85);        /* Light Gray */
+    --surface: oklch(0.18 0.02 260);               /* 약간 밝은 Navy - 표면 */
+    --surface-variant: oklch(0.22 0.02 260);       /* 더 밝은 Navy */
+    
+    /* Border */
+    --border: oklch(0.2 0.02 85);
+    --border-hover: oklch(0.3 0.05 85);
+    --border-focus: oklch(0.35 0.2 260);
+    
+    /* Input */
+    --input: oklch(0.08 0.01 85);
+    --input-border: oklch(0.25 0.03 85);
+    --input-focus: oklch(0.35 0.2 260);
+    
+    /* Ring */
+    --ring: oklch(0.35 0.2 260);
+    --ring-offset: oklch(0.05 0.01 85);
+    
+    /* ===== 상태 색상 (Dark Mode) ===== */
+    /* Success */
+    --success: oklch(0.75 0.15 140);               /* Brighter Green */
+    --success-foreground: oklch(0.15 0.02 140);    /* Dark Green */
+    --success-bg: oklch(0.25 0.1 140);             /* 어두운 Green 배경 */
+    --success-text: oklch(0.8 0.15 140);           /* 밝은 Green 텍스트 */
+    
+    /* Warning */
+    --warning: oklch(0.85 0.15 80);                /* Brighter Yellow */
+    --warning-foreground: oklch(0.2 0.05 80);      /* Dark Yellow */
+    --warning-bg: oklch(0.3 0.1 80);               /* 어두운 Yellow 배경 */
+    --warning-text: oklch(0.85 0.15 80);           /* 밝은 Yellow 텍스트 */
+    
+    /* Error/Destructive */
+    --error: oklch(0.7 0.2 20);                    /* Brighter Red */
+    --error-foreground: oklch(0.15 0.02 20);       /* Dark Red */
+    --error-bg: oklch(0.25 0.15 20);               /* 어두운 Red 배경 */
+    --error-text: oklch(0.75 0.2 20);              /* 밝은 Red 텍스트 */
+    
+    --destructive: oklch(0.7 0.2 20);              /* Brighter Red */
+    --destructive-foreground: oklch(0.15 0.02 20); /* Dark Red */
+    --destructive-bg: oklch(0.25 0.15 20);         /* 어두운 Red 배경 */
+    --destructive-text: oklch(0.75 0.2 20);        /* 밝은 Red 텍스트 */
+    
+    /* Info */
+    --info: oklch(0.75 0.15 240);                  /* Brighter Blue */
+    --info-foreground: oklch(0.15 0.02 240);       /* Dark Blue */
+    --info-bg: oklch(0.25 0.1 240);                /* 어두운 Blue 배경 */
+    --info-text: oklch(0.8 0.15 240);              /* 밝은 Blue 텍스트 */
+  }
+}
+
+/* Tailwind Theme Configuration */
+@theme inline {
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-destructive: var(--destructive);
+  --color-info: var(--info);
+  
+  /* Gray Scale */
+  --color-gray-50: var(--gray-50);
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-300: var(--gray-300);
+  --color-gray-400: var(--gray-400);
+  --color-gray-500: var(--gray-500);
+  --color-gray-600: var(--gray-600);
+  --color-gray-700: var(--gray-700);
+  --color-gray-800: var(--gray-800);
+  --color-gray-900: var(--gray-900);
+  
+  /* Amber Scale */
+  --color-amber-50: var(--amber-50);
+  --color-amber-100: var(--amber-100);
+  --color-amber-200: var(--amber-200);
+  --color-amber-300: var(--amber-300);
+  --color-amber-400: var(--amber-400);
+  --color-amber-500: var(--amber-500);
+  --color-amber-600: var(--amber-600);
+  --color-amber-700: var(--amber-700);
+  --color-amber-800: var(--amber-800);
+  --color-amber-900: var(--amber-900);
+  
+  /* Fonts */
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-logo: var(--font-righteous), ui-sans-serif, system-ui, sans-serif;
+  
+  /* Border Radius */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+/* Base Styles */
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold text-foreground;
+}
+
+h1 {
+  @apply text-4xl;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+h3 {
+  @apply text-2xl;
+}
+
+h4 {
+  @apply text-xl;
+}
+
+h5 {
+  @apply text-lg;
+}
+
+h6 {
+  @apply text-base;
+}
+
+p {
+  @apply text-base text-foreground;
+}
+
+a {
+  @apply text-secondary transition-colors;
+}
+
+a:hover {
+  color: var(--secondary-hover);
+}
+
+/* Focus Styles */
+:focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
+
+/* Selection */
+::selection {
+  @apply bg-accent text-accent-foreground;
+}
